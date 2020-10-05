@@ -21,8 +21,8 @@
         </style>
     </head>
     <body class="antialiased">
-        <div>
-        <h1>Hello world</h1>
-        </div>
+        <div id="app"></div>
+        <script src="js/app.js"></script>
+        <script src="{{ mix('js/app.js') }}"></script>
     </body>
 </html>
