@@ -21,9 +21,9 @@
         </style>
     </head>
     <body class="antialiased">
-        <v-app>
-             <div id="app"></div>
-        </v-app>
+                        <div id="app">
+                                <FileAlterComponent></FileAlterComponent>
+                        </div>
         <script src="js/app.js"></script>
     </body>
 </html>
