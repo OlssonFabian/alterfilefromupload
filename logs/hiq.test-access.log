@@ -1,0 +1,6 @@
+127.0.0.1 - - [05/Oct/2020:08:30:39 +0200] "GET / HTTP/1.1" 301 224 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
+127.0.0.1 - - [05/Oct/2020:08:30:39 +0200] "GET / HTTP/1.1" 200 17457 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
+127.0.0.1 - - [05/Oct/2020:08:30:41 +0200] "GET /favicon.ico HTTP/1.1" 200 - "https://hiq.test/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
+127.0.0.1 - - [05/Oct/2020:08:31:18 +0200] "GET /favicon.ico HTTP/1.1" 304 - "https://hiq.test/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
+127.0.0.1 - - [05/Oct/2020:08:42:52 +0200] "GET / HTTP/1.1" 200 4565 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
+127.0.0.1 - - [05/Oct/2020:08:42:52 +0200] "GET /favicon.ico HTTP/1.1" 304 - "https://hiq.test/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36"
