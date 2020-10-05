@@ -21,8 +21,9 @@
         </style>
     </head>
     <body class="antialiased">
-        <div>
-        <h1>Hello world</h1>
-        </div>
+        <v-app>
+             <div id="app"></div>
+        </v-app>
+        <script src="js/app.js"></script>
     </body>
 </html>
