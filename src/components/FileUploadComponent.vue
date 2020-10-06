@@ -8,8 +8,9 @@
                     label="File input"
                     value="textFile"
                     v-model="textFile"
+                    @change="selectFile"
                 ></v-file-input>
-                <v-btn color="primary" text @click="uploadFile()">upload</v-btn>
+                <v-btn color="primary" text @click="uploadFile">upload</v-btn>
             </v-card>
         </v-row>
     </v-container>
@@ -24,24 +25,32 @@
         data() {
             return {
                 textFile: '',
-                uploadedFile: {},
+                uploadedFile: undefined,
             }
         },
         methods: {
-            uploadFile: function(textFile){
-                const uploadedFile = new Blob([this.textFile], { type: "text/xml"});
-                let currentObj = this;
+            selectFile(file) {
+                this.uploadedFile = file;
+                console.log(this.uploadedFile);
+            },
+
+            uploadFile: function(){
+
+                //file needs to be appended to FormData
+                let formData = new FormData();
+                formData.append("file", this.uploadedFile);
 
                 const config = {
-                    headers: { 'content-type': 'text/xml' }
+                    headers: { 'content-type': 'text/plain' }
                 }
 
-                axios.post('/fileSubmit', uploadedFile, config)
+                //Calling laravel controller with formData and config
+                axios.post('/fileSubmit', formData, config)
                 .then(function (response) {
-                    currentObj.success = response.data.success;
+                    console.log(response);
                 })
                 .catch(function (error) {
-                    currentObj.output = error;
+                    console.log('something went wrong')
                 });
             }
         }
