@@ -3,7 +3,7 @@
 /public/storage
 /storage/*.key
 /vendor
-/logs/*
+logs/hiq.test-access.log
 .env
 .env.backup
 .phpunit.result.cache
