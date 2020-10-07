@@ -3,10 +3,14 @@
              <FileUploadComponent>
 
             </FileUploadComponent>
+            <FileGetComponent>
+
+            </FileGetComponent>
         </v-app>
 </template>
 <script>
 import FileUploadComponent from './components/FileUploadComponent';
+import FileGetComponent from './components/FileGetComponent';
 
 export default {
     data() {
@@ -17,7 +21,8 @@ export default {
 
     },
     components: {
-        FileUploadComponent
+        FileUploadComponent,
+        FileGetComponent
     }
 }
 </script>
