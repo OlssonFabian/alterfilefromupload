@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Storage;
 class FileUpdateController extends Controller
 {
     public static function fileUpdate($file){
-        $content = Storage::disk('uploads')->get($file);
+        $filePath = '/textfiles//' . $file;
+        $content = Storage::disk('public')->get($filePath);
         //$content = Storage::disk('uploads')->get($path);
 
         //seperates each word to an array item
@@ -27,5 +28,7 @@ class FileUpdateController extends Controller
 
         //updates the content
         $updatedContent = $content->preg_replace($key, $foobarKey);
+
+        return $updatedContent;
     }
 }

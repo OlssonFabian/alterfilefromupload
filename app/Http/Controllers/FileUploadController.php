@@ -12,12 +12,12 @@ class FileUploadController extends Controller
     // function to store file in 'upload' folder
     public function fileStore(Request $request)
     {
-        $upload_path = public_path('uploads');
-        $file_name = $request->file->getClientOriginalName();
+        $upload_path = Storage::disk('public')->path('/textfiles' );
+        $fileName = $request->file->getClientOriginalName();
         $generated_new_name = time() . '.' . $request->file->getClientOriginalExtension();
         $request->file->move($upload_path, $generated_new_name);
-        FileUpdateController::fileUpdate($generated_new_name);
-
-        return response()->json(['success' => 'You have successfully uploaded "' . $file_name . '"']);
+        // $fileName = time() . '.' . $request->file->getClientOriginalExtension();
+        FileUpdateController::fileUpdate($request->file($generated_new_name));
+         //return response()->json(['success' => 'You have successfully uploaded "' . $fileName . '"']);
     }
 }
