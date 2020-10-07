@@ -13,7 +13,7 @@
         "@mdi/font": "^3.6.95",
         "roboto-fontface": "*",
         "vue": "^2.6.12",
-        "vuetify": "^2.3.12"
+        "vuetify": "^2.3.13"
     },
     "devDependencies": {
         "axios": "^0.19.2",

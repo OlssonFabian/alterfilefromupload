@@ -9,8 +9,8 @@
         </v-app>
 </template>
 <script>
-import FileUploadComponent from './components/FileUploadComponent';
-import FileGetComponent from './components/FileGetComponent';
+import FileUploadComponent from './FileUploadComponent';
+import FileGetComponent from './FileGetComponent';
 
 export default {
     data() {
