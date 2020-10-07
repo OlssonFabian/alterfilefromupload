@@ -4,11 +4,11 @@ import Vuetify from 'vuetify';
 import FileAlterApp from '../FileAlterApp.vue';
 Vue.use(Vuetify);
 import 'vuetify/dist/vuetify.min.css'
-Vue.component('FileAlterApp', { /* ... */ })
+Vue.component('file-alter-app',require('../FileAlterApp.vue'));
 const vuetify = new Vuetify();
 
 new Vue({
     vuetify,
     FileAlterApp,
     render: h => h(FileAlterApp)
-  }).$mount('#app')
+  }).$mount('#file-app')

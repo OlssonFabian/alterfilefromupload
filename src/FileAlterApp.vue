@@ -14,6 +14,7 @@ import FileGetComponent from './components/FileGetComponent';
 
 export default {
     data() {
+        name: 'file-alter-app'
         return {
         }
     },
