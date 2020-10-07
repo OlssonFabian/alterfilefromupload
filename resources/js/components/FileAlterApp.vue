@@ -3,13 +3,18 @@
              <FileUploadComponent>
 
             </FileUploadComponent>
+            <FileGetComponent>
+
+            </FileGetComponent>
         </v-app>
 </template>
 <script>
-import FileUploadComponent from './components/FileUploadComponent';
+import FileUploadComponent from './FileUploadComponent';
+import FileGetComponent from './FileGetComponent';
 
 export default {
     data() {
+        name: 'file-alter-app'
         return {
         }
     },
@@ -17,7 +22,8 @@ export default {
 
     },
     components: {
-        FileUploadComponent
+        FileUploadComponent,
+        FileGetComponent
     }
 }
 </script>

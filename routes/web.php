@@ -19,3 +19,8 @@ Route::get('/', function () {
 });
 
 Route::post('/fileSubmit', 'App\Http\Controllers\FileUploadController@fileStore');
+Route::get('/getTextFile', 'App\Http\Controllers\FileGetController@getFileContent');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

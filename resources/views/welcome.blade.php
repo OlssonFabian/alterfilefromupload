@@ -21,9 +21,9 @@
         </style>
     </head>
     <body class="antialiased">
-                        <div id="app">
+                        {{--  <div id="app">
                                 <FileAlterComponent></FileAlterComponent>
                         </div>
-        <script src="js/app.js"></script>
+        <script src="js/app.js"></script>  --}}
     </body>
 </html>
