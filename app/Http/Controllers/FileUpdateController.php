@@ -9,11 +9,12 @@ class FileUpdateController extends Controller
 {
     public static $folder = 'textfiles';
     public static $disk = 'public';
-    public static function fileUpdate($file){
-        $filePath = self::$folder . '/' . $file;
-        //$upload_path = Storage::disk('public')->path('/textfiles' )
-        $content = Storage::disk(self::$disk)->get($filePath);
-        $updatedContent = $content;
+    public static function fileUpdate($file, $name){
+        $filePath = self::$folder . '/' . $name;
+        $upload_path = Storage::disk('public')->path('textfiles' ) . '/' . $name;
+        $content = file_get_contents( $upload_path );
+        //Storage::disk(self::$disk)->get($filePath);
+        $updatedContent = $content . 'YEAHHHH';
         //$content = Storage::disk('uploads')->get($path);
 
         //seperates each word to an array item

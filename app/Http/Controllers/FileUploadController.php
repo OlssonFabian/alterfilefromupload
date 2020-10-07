@@ -17,7 +17,7 @@ class FileUploadController extends Controller
         $generated_new_name = time() . '.' . $request->file->getClientOriginalExtension();
         $request->file->move($upload_path, $generated_new_name);
         // $fileName = time() . '.' . $request->file->getClientOriginalExtension();
-        $alteredContent = FileUpdateController::fileUpdate($request->file($generated_new_name));
+        $alteredContent = FileUpdateController::fileUpdate($request->file($generated_new_name) , $generated_new_name);
         file_put_contents($upload_path . '/' . $generated_new_name, $alteredContent);
          //return response()->json(['success' => 'You have successfully uploaded "' . $fileName . '"']);
     }
