@@ -19,3 +19,4 @@ Route::get('/', function () {
 });
 
 Route::post('/fileSubmit', 'App\Http\Controllers\FileUploadController@fileStore');
+Route::get('/getTextFile', 'App\Http\Controllers\FileGetController@getFileContent');
