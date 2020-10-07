@@ -6,9 +6,10 @@
                 <v-btn color="primary" text @click="getFileContent">Get altered files</v-btn>
             </v-card>
             <ul>
-                <li v-for="fileWithContent in filesWithContents>
+                <li v-for="fileWithContent in filesWithContents" :key="fileWithContent.title">
                     <v-card>
-                        {{fileWithContent}}
+                        <h1>{{fileWithContent.title}}</h1>
+                        <p>{{fileWithContent.content}}</p>
                     </v-card>
                 </li>
             </ul>
@@ -28,7 +29,7 @@
             getFileContent: function(){
 
                 axios.get('/getTextFile')
-                .then(response => (this.filesWithContents = response))
+                .then(response => (this.filesWithContents = response.data.files))
                 .catch(function (error) {
                     console.log('something went wrong')
                 });
@@ -36,3 +37,4 @@
         }
     }
 </script>
+
