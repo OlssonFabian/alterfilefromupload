@@ -26,8 +26,8 @@ class FileUpdateController extends Controller
         foreach ($words as $word) {
                 //searches for number 3 in array
                 $fooBarWord =  'foo' . $word . 'bar';
-                $updatedContent = preg_replace( '/' . $word . '/', $fooBarWord, $content);
+                $content = preg_replace( '/' . $word . '/', $fooBarWord, $content);
         }
-        return $updatedContent;
+        return $content;
     }
 }
