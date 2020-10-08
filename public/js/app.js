@@ -1920,6 +1920,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1960,27 +1962,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      filesWithContents: []
+      buttonToggler: true,
+      filesWithContents: [],
+      buttonText: 'Show'
     };
   },
   methods: {
     getFileContent: function getFileContent() {
       var _this = this;
 
-      axios.get('/getTextFile').then(function (response) {
-        return _this.filesWithContents = response.data.files;
-      })["catch"](function (error) {
-        console.log('something went wrong');
-      });
+      if (this.buttonToggler) {
+        axios.get('/getTextFile').then(function (response) {
+          return _this.filesWithContents = response.data.files;
+        })["catch"](function (error) {
+          console.log('something went wrong');
+        });
+        this.buttonToggler = !this.buttonToggler;
+        this.buttonText = 'Hide';
+      } else {
+        this.filesWithContents = [];
+        this.buttonToggler = !this.buttonToggler;
+        this.buttonText = 'Show';
+      }
     }
   }
 });
@@ -1996,10 +2002,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
 //
 //
 //
@@ -38249,8 +38251,16 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-app",
-    [_c("FileUploadComponent"), _vm._v(" "), _c("FileGetComponent")],
+    "v-container",
+    { staticClass: "grey lighten-5" },
+    [
+      _c(
+        "v-row",
+        { attrs: { justify: "space-around" } },
+        [_c("FileUploadComponent"), _vm._v(" "), _c("FileGetComponent")],
+        1
+      )
+    ],
     1
   )
 }
@@ -38277,54 +38287,37 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-app",
+    "v-container",
     [
       _c(
-        "v-container",
-        { staticClass: "grey lighten-5" },
-        [
-          _c(
-            "v-row",
-            { attrs: { justify: "space-around" } },
+        "v-btn",
+        {
+          attrs: { rounded: "", color: "primary", dark: "" },
+          on: { click: _vm.getFileContent }
+        },
+        [_vm._v(_vm._s(_vm.buttonText))]
+      ),
+      _vm._v(" "),
+      _c(
+        "v-list",
+        _vm._l(_vm.filesWithContents, function(fileWithContent) {
+          return _c(
+            "v-list-item",
+            { key: fileWithContent.title, staticClass: "mb-2" },
             [
               _c(
                 "v-card",
-                { attrs: { width: "70vw", center: "" } },
                 [
-                  _c(
-                    "v-btn",
-                    {
-                      attrs: { color: "primary", text: "" },
-                      on: { click: _vm.getFileContent }
-                    },
-                    [_vm._v("Get altered files")]
-                  )
+                  _c("v-card-title", [_vm._v(_vm._s(fileWithContent.title))]),
+                  _vm._v(" "),
+                  _c("v-card-text", [_vm._v(_vm._s(fileWithContent.content))])
                 ],
                 1
-              ),
-              _vm._v(" "),
-              _c(
-                "ul",
-                _vm._l(_vm.filesWithContents, function(fileWithContent) {
-                  return _c(
-                    "li",
-                    { key: fileWithContent.title },
-                    [
-                      _c("v-card", [
-                        _c("h1", [_vm._v(_vm._s(fileWithContent.title))]),
-                        _vm._v(" "),
-                        _c("p", [_vm._v(_vm._s(fileWithContent.content))])
-                      ])
-                    ],
-                    1
-                  )
-                }),
-                0
               )
             ],
             1
           )
-        ],
+        }),
         1
       )
     ],
@@ -38354,52 +38347,34 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-app",
+    "v-container",
+    { staticClass: "mt-2" },
     [
+      _c("v-file-input", {
+        attrs: {
+          accept: "text/*",
+          label: "File input",
+          outlined: "",
+          dense: "",
+          value: "textFile"
+        },
+        on: { change: _vm.selectFile },
+        model: {
+          value: _vm.textFile,
+          callback: function($$v) {
+            _vm.textFile = $$v
+          },
+          expression: "textFile"
+        }
+      }),
+      _vm._v(" "),
       _c(
-        "v-container",
-        { staticClass: "grey lighten-5" },
-        [
-          _c(
-            "v-row",
-            { attrs: { justify: "space-around" } },
-            [
-              _c(
-                "v-card",
-                { attrs: { width: "70vw", center: "" } },
-                [
-                  _c("v-file-input", {
-                    attrs: {
-                      accept: "text/*",
-                      label: "File input",
-                      value: "textFile"
-                    },
-                    on: { change: _vm.selectFile },
-                    model: {
-                      value: _vm.textFile,
-                      callback: function($$v) {
-                        _vm.textFile = $$v
-                      },
-                      expression: "textFile"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "v-btn",
-                    {
-                      attrs: { color: "primary", text: "" },
-                      on: { click: _vm.uploadFile }
-                    },
-                    [_vm._v("upload")]
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
+        "v-btn",
+        {
+          attrs: { color: "primary", text: "" },
+          on: { click: _vm.uploadFile }
+        },
+        [_vm._v("upload")]
       )
     ],
     1

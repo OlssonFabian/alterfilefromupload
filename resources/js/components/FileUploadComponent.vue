@@ -1,20 +1,16 @@
 <template>
-    <v-app>
-    <v-container class="grey lighten-5">
-        <v-row justify="space-around">
-            <v-card width="70vw" center>
-                <v-file-input
-                    accept="text/*"
-                    label="File input"
-                    value="textFile"
-                    v-model="textFile"
-                    @change="selectFile"
+    <v-container class='mt-2'>
+            <v-file-input
+                accept="text/*"
+                label="File input"
+                outlined
+                dense
+                value="textFile"
+                v-model="textFile"
+                @change="selectFile"
                 ></v-file-input>
-                <v-btn color="primary" text @click="uploadFile">upload</v-btn>
-            </v-card>
-        </v-row>
+            <v-btn color="primary" text @click="uploadFile">upload</v-btn>
     </v-container>
-    </v-app>
 </template>
 
 <script>
