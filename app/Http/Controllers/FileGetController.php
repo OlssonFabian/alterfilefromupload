@@ -15,9 +15,7 @@ class FileGetController extends Controller
             if (strpos($file, '-user-id-' .  Auth::user()->id) !== false) {
                 $content = file_get_contents($file);
                 $fileName = basename($file);
-                //array_push($userFileList, '<h1>' . $fileName . '</h1>' . '<p>' . $content . '</p>');
                 array_push($userFileList, ['title' => $fileName, 'content'=> $content]);
-
             }
         }
         return response()->json([
