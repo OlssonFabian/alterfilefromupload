@@ -1959,16 +1959,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      content: ''
+      filesWithContents: []
     };
   },
   methods: {
     getFileContent: function getFileContent() {
+      var _this = this;
+
       axios.get('/getTextFile').then(function (response) {
-        console.log(response);
+        return _this.filesWithContents = response.data.files;
       })["catch"](function (error) {
         console.log('something went wrong');
       });
@@ -38282,18 +38291,35 @@ var render = function() {
                 "v-card",
                 { attrs: { width: "70vw", center: "" } },
                 [
-                  _c("p", [_vm._v("Here be ccontent")]),
-                  _vm._v(" "),
                   _c(
                     "v-btn",
                     {
                       attrs: { color: "primary", text: "" },
                       on: { click: _vm.getFileContent }
                     },
-                    [_vm._v("upload")]
+                    [_vm._v("Get altered files")]
                   )
                 ],
                 1
+              ),
+              _vm._v(" "),
+              _c(
+                "ul",
+                _vm._l(_vm.filesWithContents, function(fileWithContent) {
+                  return _c(
+                    "li",
+                    { key: fileWithContent.title },
+                    [
+                      _c("v-card", [
+                        _c("h1", [_vm._v(_vm._s(fileWithContent.title))]),
+                        _vm._v(" "),
+                        _c("p", [_vm._v(_vm._s(fileWithContent.content))])
+                      ])
+                    ],
+                    1
+                  )
+                }),
+                0
               )
             ],
             1
