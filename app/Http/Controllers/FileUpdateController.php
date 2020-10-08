@@ -9,29 +9,25 @@ class FileUpdateController extends Controller
 {
     public static $folder = 'textfiles';
     public static $disk = 'public';
+
     public static function fileUpdate($file, $name){
         $filePath = self::$folder . '/' . $name;
         $upload_path = Storage::disk('public')->path('textfiles' ) . '/' . $name;
         $content = file_get_contents( $upload_path );
-        //Storage::disk(self::$disk)->get($filePath);
-
-        //seperates each word to an array item
 
         //finds out how many times a word is occuring
-        $wordCount = array_count_values(str_word_count($content, 1, 'àáãç3'));
+        $wordCounts = array_count_values(str_word_count($content, 1, 'àáãç3'));
+        //133
 
-        //finds the highest number
-        $value = max($wordCount);
+        $max = max($wordCounts);
+        $words = array_keys($wordCounts, $max);
+        //[0]->kebab [1]->halo
 
-        //finds the key associated with the highest number
-        $key = array_search($value, $wordCount);
-
-        //the replacing value
-        $fooBarKey =  'foo' . $key . 'bar';
-
-        //updates the content
-        $updatedContent = preg_replace( '/' . $key . '/', $fooBarKey, $content);
-
+        foreach ($words as $word) {
+                //searches for number 3 in array
+                $fooBarWord =  'foo' . $word . 'bar';
+                $updatedContent = preg_replace( '/' . $word . '/', $fooBarWord, $content);
+        }
         return $updatedContent;
     }
 }
