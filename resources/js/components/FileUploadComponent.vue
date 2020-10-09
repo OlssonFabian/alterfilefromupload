@@ -17,8 +17,8 @@
             </v-col>
             <v-col class="col-md-1">
                 <FileDisplayButton v-on:clickedShow="getData=true" v-on:clickedHide="getData=false"></FileDisplayButton>
-                <FileDisplayComponent :getData="getData"></FileDisplayComponent>
             </v-col>
+            <FileDisplayComponent :getData="getData"></FileDisplayComponent>
         </v-row>
     </v-container>
 </template>
