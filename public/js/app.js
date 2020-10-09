@@ -38484,12 +38484,12 @@ var render = function() {
                     _vm.getData = false
                   }
                 }
-              }),
-              _vm._v(" "),
-              _c("FileDisplayComponent", { attrs: { getData: _vm.getData } })
+              })
             ],
             1
-          )
+          ),
+          _vm._v(" "),
+          _c("FileDisplayComponent", { attrs: { getData: _vm.getData } })
         ],
         1
       )
