@@ -13,18 +13,26 @@
 
 <script>
     export default {
+        props: {
+            getData: Boolean,
+        },
         data() {
             return {
                 filesWithContents: [],
             }
         },
         watch: {
-            '$attrs.getData': function() {
+            getData: function() {
+                if(this.getData){
                     axios.get('/getTextFile')
                         .then(response => (this.filesWithContents = response.data.files))
                         .catch(function (error) {
                             console.log('something went wrong')
                     });
+                }
+                else{
+                    this.filesWithContents = [];
+                }
             },
         },
     }

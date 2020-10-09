@@ -1996,20 +1996,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    getData: Boolean
+  },
   data: function data() {
     return {
       filesWithContents: []
     };
   },
   watch: {
-    '$attrs.getData': function $attrsGetData() {
+    getData: function getData() {
       var _this = this;
 
-      axios.get('/getTextFile').then(function (response) {
-        return _this.filesWithContents = response.data.files;
-      })["catch"](function (error) {
-        console.log('something went wrong');
-      });
+      if (this.getData) {
+        axios.get('/getTextFile').then(function (response) {
+          return _this.filesWithContents = response.data.files;
+        })["catch"](function (error) {
+          console.log('something went wrong');
+        });
+      } else {
+        this.filesWithContents = [];
+      }
     }
   }
 });
