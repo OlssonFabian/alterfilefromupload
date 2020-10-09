@@ -46,7 +46,6 @@ import FileDisplayButton from './FileDisplayButton';
 
             uploadFile: function(){
                 //file needs to be appended to FormData
-                if(getData){
                     let formData = new FormData();
                     formData.append("file", this.uploadedFile);
 
@@ -62,10 +61,6 @@ import FileDisplayButton from './FileDisplayButton';
                     .catch(function (error) {
                         console.log('something went wrong')
                     });
-                }
-                else{
-                    console.log('something is wrong');
-                }
             }
         },
         components: {

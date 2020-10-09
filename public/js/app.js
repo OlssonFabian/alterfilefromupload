@@ -2079,23 +2079,19 @@ __webpack_require__.r(__webpack_exports__);
     },
     uploadFile: function uploadFile() {
       //file needs to be appended to FormData
-      if (getData) {
-        var formData = new FormData();
-        formData.append("file", this.uploadedFile);
-        var config = {
-          headers: {
-            'content-type': 'text/plain'
-          }
-        }; //Calling laravel controller with formData and config
+      var formData = new FormData();
+      formData.append("file", this.uploadedFile);
+      var config = {
+        headers: {
+          'content-type': 'text/plain'
+        }
+      }; //Calling laravel controller with formData and config
 
-        axios.post('/fileSubmit', formData, config).then(function (response) {
-          console.log(response);
-        })["catch"](function (error) {
-          console.log('something went wrong');
-        });
-      } else {
-        console.log('something is wrong');
-      }
+      axios.post('/fileSubmit', formData, config).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.log('something went wrong');
+      });
     }
   },
   components: {
