@@ -20,7 +20,7 @@
         },
         data() {
             return {
-                textFile: '',
+                textFile: [],
                 uploadedFile: undefined,
             }
         },
