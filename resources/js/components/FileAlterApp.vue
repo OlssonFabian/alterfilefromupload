@@ -1,21 +1,21 @@
 <template>
-        <v-app>
-             <FileUploadComponent>
+    <v-container class="grey lighten-5">
+        <v-row justify="space-around">
+            <FileUploadComponent>
 
             </FileUploadComponent>
-            <FileGetComponent>
-
-            </FileGetComponent>
-        </v-app>
+        </v-row>
+    </v-container>
 </template>
 <script>
 import FileUploadComponent from './FileUploadComponent';
-import FileGetComponent from './FileGetComponent';
+import FileDisplayComponent from './FileDisplayComponent';
 
 export default {
     data() {
         name: 'file-alter-app'
         return {
+
         }
     },
     methods: {
@@ -23,7 +23,7 @@ export default {
     },
     components: {
         FileUploadComponent,
-        FileGetComponent
+        FileDisplayComponent
     }
 }
 </script>

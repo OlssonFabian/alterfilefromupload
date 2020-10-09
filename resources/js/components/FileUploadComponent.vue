@@ -1,31 +1,41 @@
 <template>
-    <v-app>
-    <v-container class="grey lighten-5">
-        <v-row justify="space-around">
-            <v-card width="70vw" center>
-                <v-file-input
-                    accept="text/*"
-                    label="File input"
-                    value="textFile"
-                    v-model="textFile"
-                    @change="selectFile"
-                ></v-file-input>
-                <v-btn color="primary" text @click="uploadFile">upload</v-btn>
-            </v-card>
+    <v-container class='mt-2'>
+        <v-row class="d-flex flex-row">
+             <v-file-input
+                accept="text/*"
+                label="File input"
+                outlined
+                dense
+                value="textFile"
+                v-model="textFile"
+                @change="selectFile"
+            ></v-file-input>
+        </v-row>
+        <v-row class="d-flex flex-row" justify="start">
+            <v-col class="col-md-1">
+                <v-btn rounded color="primary" dark @click="uploadFile" class="d-inline-flex">upload</v-btn>
+            </v-col>
+            <v-col class="col-md-1">
+                <FileDisplayButton v-on:clickedShow="getData=true" v-on:clickedHide="getData=false"></FileDisplayButton>
+                <FileDisplayComponent :getData="getData"></FileDisplayComponent>
+            </v-col>
         </v-row>
     </v-container>
-    </v-app>
 </template>
 
 <script>
+import FileDisplayComponent from './FileDisplayComponent';
+import FileDisplayButton from './FileDisplayButton';
+
     export default {
         mounted() {
             console.log('Component mounted.')
         },
         data() {
             return {
-                textFile: '',
+                textFile: [],
                 uploadedFile: undefined,
+                getData: false,
             }
         },
         methods: {
@@ -35,24 +45,31 @@
             },
 
             uploadFile: function(){
-
                 //file needs to be appended to FormData
-                let formData = new FormData();
-                formData.append("file", this.uploadedFile);
+                if(getData){
+                    let formData = new FormData();
+                    formData.append("file", this.uploadedFile);
 
-                const config = {
-                    headers: { 'content-type': 'text/plain' }
+                    const config = {
+                        headers: { 'content-type': 'text/plain' }
+                    }
+
+                    //Calling laravel controller with formData and config
+                    axios.post('/fileSubmit', formData, config)
+                    .then(function (response) {
+                        console.log(response);
+                    })
+                    .catch(function (error) {
+                        console.log('something went wrong')
+                    });
                 }
-
-                //Calling laravel controller with formData and config
-                axios.post('/fileSubmit', formData, config)
-                .then(function (response) {
-                    console.log(response);
-                })
-                .catch(function (error) {
-                    console.log('something went wrong')
-                });
+                else{
+                    console.log('something is wrong');
+                }
             }
+        },
+        components: {
+            FileDisplayComponent, FileDisplayButton
         }
     }
 </script>
