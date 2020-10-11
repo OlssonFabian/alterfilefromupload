@@ -19,18 +19,26 @@ class FileUpdateController extends Controller
         $wordArray = str_word_count($content, 1, self::$regExAll);
         //[0]=>Tjenare [1]=>ord [2]=>annatord [3]=>tjenare,
 
+        $wordArrayLower = str_word_count(strtolower($content), 1, self::$regExAll);
+        //[0]=>tjenare [1]=>ord [2]=>annatord [3]=>tjenare,
+
         $wordCountsLowercase = array_count_values(str_word_count(strtolower($content), 1, self::$regExAll));
-        //['Tjenare']=>5
+        //['tjenare']=>5
+
+        $arrayOffWordsWithVals = array_intersect($wordArrayLower ,$wordCountsLowercase);
+
+        $wordArray = array_combine($wordArray, $arrayOffWordsWithVals);
 
         //$wordCountsLowercase = str_word_count($content, 1, self::$regExAll);
         //$wordCountsLowercase = array_change_key_case($wordCountsOriginal, CASE_LOWER);
         //$wordCountsLowercase = array_map('strtolower', );
         //$wordCountsLowercase = array_change_key_case(array_count_values($wordCountsOriginal),CASE_LOWER);
 
-        $words = array_keys($wordArray, max($wordCountsLowercase));
+
+        $words = array_keys($wordArray, max($wordArray));
         foreach ($words as $word) {
-                $content = str_ireplace($word, 'foo' . $word . 'bar', $content);
-                //$content = $word;
+                //$content = str_ireplace($word, 'foo' . $word . 'bar', $content);
+                $content = $words;
         }
         return $content;
     }
