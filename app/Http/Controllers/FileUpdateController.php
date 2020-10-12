@@ -39,8 +39,11 @@ class FileUpdateController extends Controller
         $words = array_keys($wordArray, max($wordArray));
 
         foreach ($words as $word) {
-                $fooBarWord =  'foo' . $word . 'bar';
-                $content = preg_replace( '/' . $word . '/i', $fooBarWord, $content);
+
+            //$fooBarWord =  'foo' . $word . 'bar';
+            //$content = str_ireplace($word, 'foo' . $word . 'bar' , $content);
+            $content = preg_replace('#\\b(' . $word . ')\\b#i', 'foo$1bar', $content);
+            //( '/' . $word . '/i', 'foo' . $word . 'bar' , $content);
         }
         return $content;
     }
