@@ -29,13 +29,18 @@ class FileUpdateController extends Controller
     public static function fileUpdate($file, $name){
         $content = file_get_contents( Storage::disk('public')->path('textfiles' ) . '/' . $name );
         $wordArray = str_word_count($content, 1, self::$regExAll);
-        $wordCounts = array_count_values(array_map('strtolower', str_word_count($content, 1, self::$regExAll)));
-        self::arrCountValueCaseInsensitive($wordArray);
-        $words = array_keys(self::arrCountValueCaseInsensitive($wordArray), max($wordCounts));
+        //$wordArrayLower = array_map('strtolower', str_word_count($content, 1, self::$regExAll));
+
+        //$wordCounts = array_count_values(array_map('strtolower', str_word_count($content, 1, self::$regExAll)));
+
+        $wordArray = self::arrCountValueCaseInsensitive($wordArray);
+        //['Tjenare']=> 5 ['hej']=> 5
+
+        $words = array_keys($wordArray, max($wordArray));
 
         foreach ($words as $word) {
                 $fooBarWord =  'foo' . $word . 'bar';
-                $content = preg_replace( '/' . $word . '/', $fooBarWord, $content);
+                $content = preg_replace( '/' . $word . '/i', $fooBarWord, $content);
         }
         return $content;
     }
