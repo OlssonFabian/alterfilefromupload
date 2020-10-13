@@ -38299,19 +38299,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "v-container",
-    { staticClass: "grey lighten-5" },
-    [
-      _c(
-        "v-row",
-        { attrs: { justify: "space-around" } },
-        [_c("FileUploadComponent")],
-        1
-      )
-    ],
-    1
-  )
+  return _c("v-container", [_c("v-row", [_c("FileUploadComponent")], 1)], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -38427,7 +38415,8 @@ var render = function() {
         [
           _c("v-file-input", {
             attrs: {
-              accept: "text/*",
+              accept:
+                "text/.txt,.pdf.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document",
               label: "File input",
               outlined: "",
               dense: "",
