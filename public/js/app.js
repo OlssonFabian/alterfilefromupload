@@ -38415,8 +38415,7 @@ var render = function() {
         [
           _c("v-file-input", {
             attrs: {
-              accept:
-                "text/.txt,.pdf.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+              accept: "text/.txt",
               label: "File input",
               outlined: "",
               dense: "",
