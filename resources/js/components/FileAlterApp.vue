@@ -1,6 +1,6 @@
 <template>
-    <v-container class="grey lighten-5">
-        <v-row justify="space-around">
+    <v-container>
+        <v-row>
             <FileUploadComponent>
 
             </FileUploadComponent>
