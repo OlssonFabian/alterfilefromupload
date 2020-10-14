@@ -27,8 +27,28 @@ class FileUpdateController extends Controller
         }
 
     public static function fileUpdate($file, $name){
-        $content = file_get_contents( Storage::disk('public')->path('textfiles' ) . '/' . $name );
-        $wordArray = str_word_count($content, 1, self::$regExAll);
+        $fileName = Storage::disk('public')->path('textfiles' ) . '/' . $name;
+
+        //Open the file in "reading only" mode.
+        $fileHandle = fopen($fileName, "r");
+
+        //If we failed to get a file handle, throw an Exception.
+        if($fileHandle === false){
+            throw new Exception('Could not get file handle for: ' . $fileName);
+        }
+
+        //While we haven't reach the end of the file.
+        while(!feof($fileHandle)) {
+            //Read the current line in.
+            $line = fgets($fileHandle);
+            //Do whatever you want to do with the line.
+        }
+
+        //Finally, close the file handle.
+        fclose($fileHandle);
+
+        //$content = file_get_contents(  );
+        $wordArray = str_word_count($fileName, 1, self::$regExAll);
         $wordArray = self::arrCountValueCaseInsensitive($wordArray);
         //['Hello']=> 5 ['world']=> 5
 
