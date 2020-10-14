@@ -41,22 +41,20 @@ class FileUpdateController extends Controller
         while(!feof($fileHandle)) {
             //Read the current line in.
             $line = fgets($fileHandle);
+            $content = file_get_contents($line);
+            $wordArray = str_word_count($content, 1, self::$regExAll);
+            $wordArray = self::arrCountValueCaseInsensitive($wordArray);
+            //['Hello']=> 5 ['world']=> 5
+
+            $words = array_keys($wordArray, max($wordArray));
+            foreach ($words as $word) {
+            $content = preg_replace('#\\b(' . $word . ')\\b#i', 'foo$1bar', $content);
+            }
             //Do whatever you want to do with the line.
         }
 
         //Finally, close the file handle.
         fclose($fileHandle);
-
-        //$content = file_get_contents(  );
-        $wordArray = str_word_count($fileName, 1, self::$regExAll);
-        $wordArray = self::arrCountValueCaseInsensitive($wordArray);
-        //['Hello']=> 5 ['world']=> 5
-
-        $words = array_keys($wordArray, max($wordArray));
-
-        foreach ($words as $word) {
-            $content = preg_replace('#\\b(' . $word . ')\\b#i', 'foo$1bar', $content);
-        }
         return $content;
     }
 }
