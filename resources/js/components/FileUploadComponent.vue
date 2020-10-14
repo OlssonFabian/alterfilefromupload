@@ -2,7 +2,7 @@
     <v-container class='mt-2'>
         <v-row class="d-flex flex-row">
              <v-file-input
-                accept="text/.txt,.pdf.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                accept="text/.txt, .rtf, .file, .md"
                 label="File input"
                 outlined
                 dense

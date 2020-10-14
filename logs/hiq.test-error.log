@@ -1,0 +1,1 @@
+[Wed Oct 14 10:27:04.204261 2020] [php7:error] [pid 278] [client 127.0.0.1:49602] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 67108872 bytes) in /Users/fabianolsson/Sites/hiq/app/Http/Controllers/FileUpdateController.php on line 31, referer: https://hiq.test/home
