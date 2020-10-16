@@ -28,7 +28,6 @@ class FileUpdateController extends Controller
         }
 
     public static function fileUpdate($file, $name){
-        $content = '';
         $contentArray = [];
 
         $fileNameOld = Storage::disk('public')->path('textfiles' ) . '/' . $name;
@@ -40,28 +39,27 @@ class FileUpdateController extends Controller
         if($fileHandle === false){
             throw new Exception('Could not get file handle for: ' . $fileNameOld);
         }
+
         $count = [];
+        $wordArray = [];
+
         while(!feof($fileHandle)) {
             $line = fgets($fileHandle);
             array_push($contentArray, $line);
             $count = array_merge($count, str_word_count($line, 1, self::$regExAll));
+            $wordArray = self::arrCountValueCaseInsensitive($count);
         }
 
-        if(feof($fileHandle)){
             ini_set('memory_limit', '150M');
-            //$wordArray = str_word_count($content, 1, self::$regExAll);
-            $wordArray = self::arrCountValueCaseInsensitive($count);
+            $lineOfContent = fgets($fileHandle);
             //['Hello']=> 5 ['world']=> 5
             $words = array_keys($wordArray, max($wordArray));
-                //$content = preg_replace('#\\b(' . $word . ')\\b#im', 'foo$1bar', $content);
                 foreach ($contentArray as $lineOfContent) {
                     foreach ($words as $word) {
                         $lineOfContent = preg_replace('#\\b(' . $word . ')\\b#im', 'foo$1bar', $lineOfContent);
                     }
                     fwrite($fileHandleNew, $lineOfContent);
                 }
-        }
-        //return $content;
         fclose($fileHandle);
         fclose($fileHandleNew);
     }
