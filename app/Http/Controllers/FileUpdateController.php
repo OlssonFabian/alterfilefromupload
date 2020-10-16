@@ -31,12 +31,14 @@ class FileUpdateController extends Controller
         $content = '';
         $contentArray = [];
 
-        $fileName = Storage::disk('public')->path('textfiles' ) . '/' . $name;
+        $fileNameOld = Storage::disk('public')->path('textfiles' ) . '/' . $name;
+        $fileNameNew = 'FooBar' . $name;
 
-        $fileHandle = fopen($fileName, "r+");
+        $fileHandle = fopen($fileNameOld, "r+");
+        $fileHandleNew = fopen('FooBar' . $fileNameNew, "x+");
 
         if($fileHandle === false){
-            throw new Exception('Could not get file handle for: ' . $fileName);
+            throw new Exception('Could not get file handle for: ' . $fileNameOld);
         }
 
         while(!feof($fileHandle)) {
@@ -52,16 +54,16 @@ class FileUpdateController extends Controller
             $wordArray = self::arrCountValueCaseInsensitive($wordArray);
             //['Hello']=> 5 ['world']=> 5
             $words = array_keys($wordArray, max($wordArray));
-            foreach ($words as $word) {
                 //$content = preg_replace('#\\b(' . $word . ')\\b#im', 'foo$1bar', $content);
                 foreach ($contentArray as $lineOfContent) {
-                    $lineOfContent = preg_replace('#\\b(' . $word . ')\\b#im', 'foo$1bar', $lineOfContent);
-                    fwrite($fileHandle, $lineOfContent);
+                    foreach ($words as $word) {
+                        $lineOfContent = preg_replace('#\\b(' . $word . ')\\b#im', 'foo$1bar', $lineOfContent);
+                    }
+                    fwrite($fileHandleNew, $lineOfContent);
                 }
-
-            }
         }
         //return $content;
         fclose($fileHandle);
+        fclose($fileHandleNew);
     }
 }
