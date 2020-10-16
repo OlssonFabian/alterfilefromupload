@@ -17,6 +17,5 @@ class FileUploadController extends Controller
         $generated_new_name = time() . '-user-id-' .  Auth::user()->id . '.' . $request->file->getClientOriginalExtension();
         $request->file->move($upload_path, $generated_new_name);
         $alteredContent = FileUpdateController::fileUpdate($request->file($generated_new_name) , $generated_new_name);
-        file_put_contents($upload_path . '/' . $generated_new_name, $alteredContent);
     }
 }
